@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import abc from './Ellipse 17.png';
 
 const BodyTemplateBlock = styled.div`
     padding-left: 50px;
@@ -9,6 +10,10 @@ const BodyTemplateBlock = styled.div`
     .category{
         font-size: 10pt;
         text-align: left;
+    }
+    .ctgr{
+        text-decoration: none;
+        color: black;
     }
     .pic{
         display: inline-block;
@@ -33,11 +38,15 @@ const BodyTemplateBlock = styled.div`
         font-weight: bold;
     }
     .heart{
-        width: 7%;
+        width: 50px;
     }
     .shopBttn{
         display: inline-block;
+        margin-left: 5px;
         background-color: #009F50;
+        height: 50px;
+        border-radius: 10px;
+        
     }
     .detail{
         margin-top: 30px;
@@ -99,11 +108,11 @@ function PDetailBlock() {
         <BodyTemplateBlock>
             <div>
                 <div className='category'>
-                    <span>비건&다이어트</span>
+                    <a className='ctgr' href=''>비건&다이어트</a>
                     <span>&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span>
-                    <span>대분류</span>
+                    <a className='ctgr' href=''>대분류</a>
                     <span>&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span>
-                    <span style={{color:'#009F50'}}>소분류</span>
+                    <a className='ctgr' href='' style={{color:'#009F50'}}>소분류</a>
                 </div>
                 <div className='PDetail'>
                     <img className='pic' src='/product_img.png'/>
@@ -122,15 +131,15 @@ function PDetailBlock() {
                 <img className='logo180' src='/Rectangle 180.png'/>
                 <p className='certified'>클린부스 인증 뱃지</p>
                 <figure className='badgeFig'>
-                    <img className='badge' src='/Ellipse 17.png'/>
+                    <img className='badge' src={abc}/>
                     <figcaption className='badgeName'>클린 인증 뱃지</figcaption>
                 </figure>
                 <figure className='badgeFig'>
-                    <img className='badge' src='/Ellipse 17.png'/>
+                    <img className='badge' src={abc}/>
                     <figcaption className='badgeName'>우수 평점 뱃지</figcaption>
                 </figure>
                 <figure className='badgeFig'>
-                    <img className='badge' src='/Ellipse 17.png'/>
+                    <img className='badge' src={abc}/>
                     <figcaption className='badgeName'>클린 프리미엄 뱃지</figcaption>
                 </figure>
                 <div>
