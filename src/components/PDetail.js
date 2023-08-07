@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import abc from './Ellipse 17.png';
 
 const BodyTemplateBlock = styled.div`
     padding-left: 50px;
@@ -19,10 +18,13 @@ const BodyTemplateBlock = styled.div`
         display: inline-block;
         width: 40%;
     }
-    .PTitle{
+    .nextPic{
         display: inline-block;
         vertical-align: top;
         padding-left: 15px;
+    }
+    .PTitle{
+        display: block;
     }
     .PDetail{
         text-align: left;
@@ -46,7 +48,11 @@ const BodyTemplateBlock = styled.div`
         background-color: #009F50;
         height: 50px;
         border-radius: 10px;
-        
+    }
+    .heartBttn{
+        position: relative;
+        display: block;
+        vertical-align: bottom;
     }
     .detail{
         margin-top: 30px;
@@ -116,12 +122,16 @@ function PDetailBlock() {
                 </div>
                 <div className='PDetail'>
                     <img className='pic' src='/product_img.png'/>
-                    <div className='PTitle'>
-                        <div className='brandName'>{PDetail[0]}</div>
-                        <div className='product'>{PDetail[1]}</div> 
+                    <div className='nextPic'>
+                        <div className='PTitle'>
+                            <div className='brandName'>{PDetail[0]}</div>
+                            <div className='product'>{PDetail[1]}</div> 
+                        </div>
+                        <div className='heartBttn'>
+                            <img className='heart' src='/heart.png'/> 
+                            <Button className='shopBttn' variant="success">빠른 구매하러 가기</Button>{' '}
+                        </div>
                     </div>
-                    <img className='heart' src='/heart.png'/> 
-                    <Button className='shopBttn' variant="success">빠른 구매하러 가기</Button>{' '}
                 </div>
                 <div className='detail'>
                     <span style={{marginRight:'10%'}}>상세정보</span>
@@ -131,15 +141,15 @@ function PDetailBlock() {
                 <img className='logo180' src='/Rectangle 180.png'/>
                 <p className='certified'>클린부스 인증 뱃지</p>
                 <figure className='badgeFig'>
-                    <img className='badge' src={abc}/>
+                    <img className='badge' alt="React" src={`${process.env.PUBLIC_URL}/public_assets/Ellipse 17.png`}/>
                     <figcaption className='badgeName'>클린 인증 뱃지</figcaption>
                 </figure>
                 <figure className='badgeFig'>
-                    <img className='badge' src={abc}/>
+                    <img className='badge' alt="React" src={`${process.env.PUBLIC_URL}/public_assets/Ellipse 17.png`}/>
                     <figcaption className='badgeName'>우수 평점 뱃지</figcaption>
                 </figure>
                 <figure className='badgeFig'>
-                    <img className='badge' src={abc}/>
+                    <img className='badge' alt="React" src={`${process.env.PUBLIC_URL}/public_assets/Ellipse 17.png`}/>
                     <figcaption className='badgeName'>클린 프리미엄 뱃지</figcaption>
                 </figure>
                 <div>
