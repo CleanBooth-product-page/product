@@ -522,14 +522,6 @@ function Info() {
     return (
         <Contaniner>
             <div>
-                <DashedText>
-                <div class='dashedhr'>
-                    <hr className='dash'/>
-                    <span class='txt'>구매 후기</span>
-                    <hr className='dash'/>
-                </div>
-                </DashedText>
-
                 <ScoreBox>
                     <div className="score">
                         <div className="starscore">

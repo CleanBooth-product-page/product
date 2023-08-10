@@ -3,6 +3,7 @@
   
   .bigBox {
     width: 75%;
+    min-width: 992px;
     border-radius: 20px;
     background-color: white;
     text-align: center;
