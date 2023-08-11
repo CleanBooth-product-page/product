@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import Recipe from './RecipeBox.js';
 
 const BodyTemplateBlock = styled.div`
     padding-left: 50px;
@@ -84,6 +85,9 @@ const BodyTemplateBlock = styled.div`
         margin-top: 40px;
         text-align: center;
     }
+    .recipe .Recipe{
+        
+    }
 `;
 
 const ContainerStyle = styled.div`
@@ -127,6 +131,11 @@ const ContainerStyle = styled.div`
         vertical-align: top;
         background-color: #009F50;
         color: #FFFFFF;
+        &:active,
+        &:hover{
+            background-color: var(--button-hover-bg-color, #00954B);
+        }
+        font-size: 13pt;
         height: 50px;
         width: 83%;
         border: 0;
@@ -136,7 +145,7 @@ const ContainerStyle = styled.div`
 
 function PDetailBlock() {
     
-    let [PDetail] = useState(['대분류', '소분류', 'Rectangle 179', '브랜드명', '제품명']);
+    let [PDetail, PD] = useState(['대분류', '소분류', 'Rectangle 179', '브랜드명', '제품명']);
     return (
         <BodyTemplateBlock>
             <div>
@@ -203,6 +212,11 @@ function PDetailBlock() {
                     <img className='nutrition' src='/Group 38.png'/>
                 </div>
                 <DashBar txt={'클린 추천 레시피'}></DashBar>
+                <div className='recipe'>
+                    <Recipe/>
+                    <Recipe/>
+                    <Recipe/>
+                </div>
                 <div id='op2'>
                     <DashBar id='op2' txt={'구매 후기'}></DashBar>
                 </div>
@@ -219,19 +233,6 @@ function DashBar(props) {
                     <span className='txt'>{props.txt}</span>
                     <hr className='dash'/>
                 </div>
-        </>
-    )
-}
-
-function Recipe(){
-    return(
-        <>
-            <div className='recipe'>
-                <img src='/Rectangle 190.png'/>
-                <p>양식</p>
-                <p>레시피 이름</p>
-                <p>레시피 한 줄 소개</p>
-            </div>
         </>
     )
 }
