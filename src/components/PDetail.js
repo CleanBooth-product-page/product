@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Recipe from './RecipeBox.js';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const BodyTemplateBlock = styled.div`
     padding-left: 50px;
@@ -70,8 +73,8 @@ const BodyTemplateBlock = styled.div`
         flex: auto;
     }
     .dashedhr{
-        margin-top: 150px;
-        margin-bottom: 100px;
+        margin-top: 100px;
+        margin-bottom: 50px;
         display: flex;
         align-items: center;
     }
@@ -85,8 +88,21 @@ const BodyTemplateBlock = styled.div`
         margin-top: 40px;
         text-align: center;
     }
-    .recipe .Recipe{
-        
+    .moreRecipe{
+        text-align: right;
+        margin-top: 20px;
+    }
+    .moreR{
+        display: inline-block;
+        color: #666666;
+        font-weight: bold;
+    }
+    .arrowRight{
+        display: inline-block;
+        width: 25px;
+        margin-left: 5px;
+        vertical-align: middle;
+        padding-bottom: 6px;
     }
 `;
 
@@ -141,7 +157,44 @@ const ContainerStyle = styled.div`
         border: 0;
         border-radius: 10px;
     }
+`;
+
+const Container = styled.div`
+	width: 100%;
+    height: 200px;
+    .slick-dots {
+        .slick-active {
+            button::before {
+                color: #b3b3b3;
+            }
+        }
+        button::before {
+        color: #b3b3b3;
+        }
+    }
+    .slick-arrows {
+    }
+`;
+
+const NextArrow = styled.div`
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    z-index: 99;
+    text-align: center;
+    line-height: 50px;
 `
+const PrevArrow = styled.div`
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 10px;
+    z-index: 99;
+    text-align: center;
+    line-height: 50px;
+`
+
 
 function PDetailBlock() {
     
@@ -213,9 +266,13 @@ function PDetailBlock() {
                 </div>
                 <DashBar txt={'클린 추천 레시피'}></DashBar>
                 <div className='recipe'>
-                    <Recipe/>
-                    <Recipe/>
-                    <Recipe/>
+                    <RecipeSlider/>
+                    <a href=''>
+                        <div className='moreRecipe'>
+                            <p className='moreR'>더 많은 비건 레시피를 보고 싶다면?</p>
+                            <img className='arrowRight' src='/arrow.right.png'/>
+                        </div>
+                    </a>
                 </div>
                 <div id='op2'>
                     <DashBar id='op2' txt={'구매 후기'}></DashBar>
@@ -236,5 +293,38 @@ function DashBar(props) {
         </>
     )
 }
+
+function RecipeSlider() {
+    const settings = {
+        centerMode: false,
+        dots: true,
+        infinite: false,
+        slidesToShow: 2.7,
+        slidesToScroll: 1,
+        arrows: true,
+        nextArrow: <NextArrow/>,
+        prevArrow: <PrevArrow/>,
+        responsive: [
+            {
+                breakpoint: 1450,
+                settings:{
+                    slidesToShow: 2.5
+                }
+            }
+        ]
+    };
+  
+    return (
+      <Container>
+        <Slider {...settings}>
+          <Recipe/>
+          <Recipe/>
+          <Recipe/>
+          <Recipe/>
+          <Recipe/>
+        </Slider>
+      </Container>
+    );
+  }
 
 export default PDetailBlock;
