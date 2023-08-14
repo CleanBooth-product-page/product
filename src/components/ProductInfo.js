@@ -61,7 +61,7 @@ const ScoreBox = styled.div`
     
     .score:after{
         content:"";
-        diplay: block;
+        display: block;
         clear: both;
     }
 
@@ -107,26 +107,26 @@ const Template = styled.div`
 
     .good {
         text-align: center;
-        width: 34%;
+        width: 30%;
         height: 200px;
         padding: 2rem;
         float: left;
         clear: left;
         margin-left: 10%;
-        display: flex;
+        display: inline-block;
         border: 2px solid gray;
         border-radius: 20px;
     }
 
     .bad {
         text-align: center;
-        width: 34%;
+        width: 30%;
         height: 200px;
         padding: 2rem;
         float: right;
         clear: right;
         margin-right: 10%;
-        display: flex;
+        display: inline-block;
         border: 2px solid gray;
         border-radius: 20px;
     }
@@ -546,7 +546,6 @@ function Info() {
                         <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", marginBottom:"20px", marginTop:"10px", fontWeight: "bold", fontSize: "12pt"}}>사진 후기
                         
                             <div className="photoreview" >
-                                <ImageContaier></ImageContaier>
                                 <ImageContaier></ImageContaier>
                                 <ImageContaier></ImageContaier>
                                 <ImageContaier></ImageContaier>

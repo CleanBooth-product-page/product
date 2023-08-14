@@ -2,6 +2,7 @@
   
   .header {
     width: 70%;
+    min-width: 992px;
     display: flex;
     justify-content: space-between;
     background-color: #009f50;
