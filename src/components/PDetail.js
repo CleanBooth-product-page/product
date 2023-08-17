@@ -1,7 +1,9 @@
 import React, {useRef} from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { Button } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 import Recipe from './RecipeBox.js';
 import Slider from 'react-slick';
 import Info from './ProductInfo';
@@ -247,6 +249,7 @@ function PDetailBlock() {
     
     let [PDetail, setPDetail] = useState(['대분류', '소분류', 'Rectangle 179', '브랜드명', '제품명']);
     let [Badge, setBadge] = useState([true, false, false]);
+
     return (
         <>
         <BodyTemplateBlock>
@@ -267,7 +270,7 @@ function PDetailBlock() {
                                     <div className='productName'>{PDetail[4]}<ShareBttn/></div> 
                                 </div>
                                 <div className='item02'>
-                                    <img className='heart' src='/heart.png'/> 
+                                    <HeartBttn className='heart'/>
                                     <Button className='shopBttn' variant="success">빠른 구매하러 가기</Button>{' '}
                                 </div>
                             </div>
@@ -354,6 +357,26 @@ function ShareBttn() { /* 공유버튼 */
         <>
             <img className='share' src={shareSrc} onClick={handleClick}/>
             <div>{isClicked === true ? <ShareBox/> : null}</div>
+        </>
+    )
+}
+
+function HeartBttn() { /* 찜버튼 */
+    const [heart, setHeart] = useState("/heart (3).png");
+    const [isClicked, setClicked] = useState(false);
+    const handleClick = () => {
+        if (isClicked) {
+            setHeart("/heart (3).png");
+            setClicked(false);
+        } else {
+            setHeart("/heart (4).png");
+            setClicked(true);
+        }
+    };
+    
+    return(
+        <>
+            <img className='heart' src={heart} onClick={handleClick}/>
         </>
     )
 }

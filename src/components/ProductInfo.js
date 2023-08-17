@@ -17,8 +17,7 @@ const Wrap = styled.div` //수정한 부분
 
 const Stars = styled.div`
     display: flex;
-    padding-top: 0px;
-    padding-bottom: 15px;
+    padding-top: 15px;
     margin: 0px auto;
 
     & svg {
@@ -26,16 +25,8 @@ const Stars = styled.div`
     cursor: pointer;
     }
 
-    :hover svg {
-    color: #fcc419;
-    }
-
-    & svg:hover ~ svg {
-    color: gray
-    }
-
     .yellowStar {
-    color: orange;
+    color: #FF6534;
     }
 `;
 
@@ -203,15 +194,17 @@ const ModalDesign=styled.div`
         align-items: center;
     }
     .review-button{
-        width: 440px;
+        margin-top: 20px;
+        background-color: #009F50;
+        color: #FFFFFF;
+        &:active,
+        &:hover{
+            background-color: var(--button-hover-bg-color, #00954B);
+        }
+        font-size: 13pt;
         height: 50px;
-        display: block; /* 버튼을 block 요소로 변경합니다. */
-        margin: 24px auto;
-        background: green;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        border: 2px solid green;
+        width: 420px;
+        border: 0;
         border-radius: 10px;
     }
 
@@ -260,13 +253,18 @@ const PhotoContainer=styled.div` //후기 등록 모달 사진 등록 버튼
     display: inline-block;
     background-color: #fafafa; //수정한 부분
     align-items: center;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border: 2px solid #CCCCCC; //수정한 부분
     border-radius: 10px; //수정한 부분
     margin-left: 30px;
     margin-right: 10px;
-    margin-top: 20px;
+    margin-top: 8px;
+    .upload_button{
+        background-color: transparent;
+        border: none;
+        padding: 0;
+    }
 `
 const Photo=styled.div`
     display: flex;
@@ -278,6 +276,17 @@ const Photo=styled.div`
 
 const ImageContainer=styled.div`
     background-color: #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border: 0;
+    margin-top: 10px;
+    margin-right: 8px;
+`
+const ImageContain=styled.div`
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -374,12 +383,32 @@ function Modal({ closeModal }){
     let [modal,setModal]=useState(false); //UI의 현재 상태 저장 //state에 따라 UI가 어떻게 보일지 작성
     
     const [inputCount, setInputCount] = useState(0);
+    const [inputCount2, setInputCount2] = useState(0);
+
+    let [content, setContent] = useState("");
+    let [content2, setContent2] =useState("");
 
     const onTextareaHandler = (e) => {
         setInputCount(
-        e.target.value.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length
+        e.target.value.length
+        );
+        setInputCount(
+            e.target.value.length
+
         );
     };
+
+    const onTextareaHandler2 = (e) => {
+        setInputCount2(
+        e.target.value.length
+        );
+        setInputCount2(
+            e.target.value.length
+
+        );
+    };
+
+    
 
     //이미지 업로드하는 부분
     let [mainImg,setMainImg] = useState("");
@@ -423,24 +452,24 @@ function Modal({ closeModal }){
                     <textarea onChange={onTextareaHandler} maxLength="5000" placeholder="내용을 입력하세요."></textarea>
                     <p>
                         <span>{inputCount}</span> 
-                        <span>/5000 자</span>
+                        <span>/5000</span>
                     </p>
                     </div>
                 </Boxexplain>
                 <Explain><span>아쉬웠던 점</span></Explain><span style={{color: "gray", display: "inline-block", marginRight: "68%"}}>20자 이상</span>
                 <Boxexplain>
                     <div className="textarea-wrapper">
-                    <textarea onChange={onTextareaHandler} maxLength="5000" placeholder="내용을 입력하세요."></textarea>
+                    <textarea onChange={onTextareaHandler2} maxLength="5000" placeholder="내용을 입력하세요."></textarea>
                     <p>
-                        <span>{inputCount}</span> 
-                        <span>/5000 자</span>
+                        <span>{inputCount2}</span> 
+                        <span>/5000</span>
                     </p>
                     </div>
                 </Boxexplain>
                 <Explain><span>사진</span></Explain><span style={{color: "gray", fontSize: "14px"}}>제품과 무관한 사진일 경우 후기 수정 요청을 드리거나, 관리자에 의해 삭제될 수 있습니다.</span>
                 <ParentContainer>
                     <PhotoContainer><Photo>
-                        <button>
+                        <button className='upload_button'>
                             <label htmlFor="image-upload">
                             <IoIosAddCircleOutline 
                             size="40"
@@ -451,9 +480,9 @@ function Modal({ closeModal }){
                         
                     </Photo></PhotoContainer>
 
-                    <ImageContainer>
+                    <ImageContain>
                         <img alt="메인사진" src={mainImg} style={{maxWidth:"100px"}}></img>
-                    </ImageContainer>
+                    </ImageContain>
                 </ParentContainer>
 
                 <button className="review-button">후기 등록하기</button>
@@ -506,9 +535,9 @@ function Info() {
     let [modal,setModal]=useState(false); //UI의 현재 상태 저장 //state에 따라 UI가 어떻게 보일지 작성
     
     //리뷰관련변수
-    let [name,setName]=useState(['000']);
-    let [age,setAge]=useState(['20']);
-    let [star,setStar]=useState([]);
+    let [name,setName]=useState(['김나현', '박지우']);
+    let [age,setAge]=useState(['20', '30']);
+    let [star,setStar]=useState([3, 2]);
     //score가 저장되어야함
     let [good,setGood]=useState(['좋았던 점 내용']);
     let [bad,setBad]=useState(['아쉬웠던 점 내용']);
