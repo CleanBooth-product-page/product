@@ -8,9 +8,11 @@ function App() {
   return (
     <div className="App">
       <div className='background'>
-      <Header/>
-      <Main/>
-      <Footer/>
+          <div className='ellipse'>
+            <Header/>
+            <Main/>
+            <Footer/>
+          </div>
       </div>
     </div>
 

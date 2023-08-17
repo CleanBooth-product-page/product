@@ -30,16 +30,17 @@ const BodyTemplateBlock = styled.div`
         height: 50px;
         float: right;
         vertical-align: middle;
-        margin-bottom: 5px;
+        margin-bottom: 6px;
         margin-right: 20px;
     }
     .sharebox{
-        margin-top: 5px;
+        clear: both;
+        float: right;
         height: 110px;
         width: 300px; 
+        margin-right: 20px;
         border: 2px solid #009F50;
         border-radius: 7px;
-        float: right;
     }
     .urltxt{
         width: 80%;
@@ -244,13 +245,13 @@ const PrevArrow = styled.div`
 
 function PDetailBlock() {
     
-    let [PDetail, PD] = useState(['대분류', '소분류', 'Rectangle 179', '브랜드명', '제품명']);
-    let [Badge, Bchange] = useState([true, false, false]);
+    let [PDetail, setPDetail] = useState(['대분류', '소분류', 'Rectangle 179', '브랜드명', '제품명']);
+    let [Badge, setBadge] = useState([true, false, false]);
     return (
         <>
         <BodyTemplateBlock>
             <div>
-                <div className='category'>
+                <div className='category'> {/* 왼쪽 상단 카테고리 정보 */}
                     <a className='ctgr' href=''>비건&다이어트</a>
                         <span>&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span>
                     <a className='ctgr' href=''>{PDetail[0]}</a>
@@ -258,7 +259,7 @@ function PDetailBlock() {
                     <a className='ctgr' href='' style={{color:'#009F50'}}>{PDetail[1]}</a>
                 </div>
                 <ContainerStyle>
-                    <div className='container'>
+                    <div className='container'> {/* 맨 상단 제품 사진 옆 정보*/}
                             <img className='pic' src={'/' + PDetail[2] + '.png'}/>
                             <div className='item'>
                                 <div className='item01'>
@@ -272,12 +273,12 @@ function PDetailBlock() {
                             </div>
                     </div>
                 </ContainerStyle>
-                <div className='detail'>
+                <div className='detail'> {/* 상세정보, 구매 후기 이동 bar */}
                     <a href='#op1' className='option' style={{marginRight:'20%'}}>&nbsp;&nbsp;&nbsp;상세정보&nbsp;&nbsp;&nbsp;</a>
                     <a href='#op2' className='option' style={{marginLeft:'20%'}}>&nbsp;&nbsp;&nbsp;구매 후기&nbsp;&nbsp;&nbsp;</a>
                 </div>
                 <hr style={{fontColor:'#B3B3B3', marginTop: '15px'}}/>
-                <div>
+                <div> {/* 뱃지 3개 */}
                     <img className='logo180' src='/Rectangle 180.png'/>
                     <p className='certified'>클린부스 인증 뱃지</p>
                     <figure className='badgeFig'>
@@ -285,19 +286,19 @@ function PDetailBlock() {
                             <figcaption className='badgeName'>클린 인증 뱃지</figcaption>
                     </figure>
                     <figure className='badgeFig'>
-                            <div>
+                            <div> {/* 우수 평점 뱃지 기본값: 흑백 */}
                                 {{Badge} === true ? <img className='badge' alt="React" src={'/NiceBadge.png'}/> : <img className='badge' alt="React" src={'/Nice_no.png'}/>}
                             </div>
                             <figcaption className='badgeName'>우수 평점 뱃지</figcaption>
                     </figure>
                     <figure className='badgeFig'>
-                            <div>
+                            <div> {/* 클린 프리미엄 뱃지 기본값: 흑백 */}
                                 {{Badge} === true ? <img className='badge' alt="React" src={'/PremiumBadge.png'}/> : <img className='badge' alt="React" src={'/Premium_no.png'}/>}
                             </div>
                             <figcaption className='badgeName'>클린 프리미엄 뱃지</figcaption>
                     </figure>
                 </div>
-                <div>
+                <div> {/* 뱃지 밑 설명 */}
                     <p className='cap0'>클린부스만 믿으세요!</p>
                     <div className='captionBlock'>
                         <p className='cap1'>자체 평가 기준 통과 제품</p>
@@ -312,7 +313,7 @@ function PDetailBlock() {
                         <p className='cap2'>체험단분들이 인정한 제품으로 평점 3.5 이상인 제품을 "프리미엄" 제품으로 판매하겠습니다.</p>
                     </div>
                 </div>
-                <div id='op1'>
+                <div id='op1'> {/* 상세정보 이동 bar destination */}
                     <DashBar txt={'꼭 읽고 가세요!'}></DashBar>
                     <img className='nutrition' src='/Group 38.png'/>
                 </div>
@@ -326,7 +327,7 @@ function PDetailBlock() {
                         </div>
                     </a>
                 </div>
-                <div id='op2'>
+                <div id='op2'> {/* 구매 후기 이동 bar destination */}
                     <DashBar id='op2' txt={'구매 후기'}></DashBar>
                 </div>
             </div>
@@ -336,7 +337,7 @@ function PDetailBlock() {
     );
 }
 
-function ShareBttn() {
+function ShareBttn() { /* 공유버튼 */
     const [shareSrc, setShare] = useState("/share_off.png");
     const [isClicked, setClicked] = useState(false);
     const handleClick = () => {
@@ -357,6 +358,7 @@ function ShareBttn() {
     )
 }
 
+//수정필요: handleCopyClipBoard 현재 페이지 url 넘기기
 function ShareBox() {
     const copyLinkRef = useRef();
     const handleCopyClipBoard = async (text: string) => {

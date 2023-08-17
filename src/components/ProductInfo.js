@@ -4,13 +4,12 @@ import { FaStar } from 'react-icons/fa';
 import { IoIosAddCircleOutline } from "react-icons/io";
 
 
-const Wrap = styled.div`
+const Wrap = styled.div` //수정한 부분
   display: flex;
   flex-direction: column;
-  padding-top: 1px;
   .h{
-    margin: 0px auto;
-    color: gray;
+    margin-bottom: 20px;
+    color: #b3b3b3;
   }
   
 `;
@@ -42,20 +41,17 @@ const Stars = styled.div`
 
 
 const ScoreBox = styled.div`
-
     display: block;
     margin: 0px auto;
 
-    .score {
+    .score { //수정한 부분
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-left: 10%;
-        margin-right: 10%;
         margin-bottom: 40px;
-        border: 2px solid gray;
-        border-radius: 20px;
-        width: 80%;
+        border: 1px solid #CCCCCC;
+        border-radius: 13px;
+        width: 100%;
         height: 200px;
     }
     
@@ -76,7 +72,6 @@ const ScoreBox = styled.div`
     .photoreview{
         display: flex;
         flex-direction: row;
-       
     }
 `;
 
@@ -103,32 +98,28 @@ const DashedText = styled.div`
 
 const Template = styled.div`
     display: block;
-    margin: 0px auto;
+    margin-bottom: 300px;
 
     .good {
-        text-align: center;
-        width: 30%;
+        width: 41%;
         height: 200px;
         padding: 2rem;
         float: left;
         clear: left;
-        margin-left: 10%;
         display: inline-block;
-        border: 2px solid gray;
-        border-radius: 20px;
+        border: 1px solid #CCCCCC;
+        border-radius: 13px;
     }
 
     .bad {
-        text-align: center;
-        width: 30%;
+        width: 41%;
         height: 200px;
         padding: 2rem;
         float: right;
         clear: right;
-        margin-right: 10%;
         display: inline-block;
-        border: 2px solid gray;
-        border-radius: 20px;
+        border: 1px solid #CCCCCC;
+        border-radius: 13px;
     }
     .h3{
         margin: 0px auto;
@@ -186,6 +177,8 @@ const ModalDesign=styled.div`
         bottom: 0;
         left: 0;
         background: rgba(0, 0, 0, 0.6); 
+        max-height: calc(100vh); //수정한 부분
+        overflow-y: auto;
     }
     .reviewmodal{
         width: 700px;
@@ -229,7 +222,9 @@ const Boxexplain=styled.div`
     height: 150px;
     border: 2px solid gray;
     border-radius: 10px;
-    margin: 20px auto;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     padding: 8px;
     box-sizing: border-box;
     
@@ -254,21 +249,21 @@ const Boxexplain=styled.div`
     }
 `;
    
-const Explain=styled.span`
+const Explain=styled.span` //수정한 부분
    font-weight: bold;
    font-size: 18px;
    margin-right: 8px;
    margin-left: 30px;
-   margin-bottom: 40px;
-
+   display: inline-block;
 `;
-const PhotoContainer=styled.div`
+const PhotoContainer=styled.div` //후기 등록 모달 사진 등록 버튼
     display: inline-block;
+    background-color: #fafafa; //수정한 부분
     align-items: center;
     width: 100px;
     height: 100px;
-    border: 2px solid gray;
-    border-radius: 20px;
+    border: 2px solid #CCCCCC; //수정한 부분
+    border-radius: 10px; //수정한 부분
     margin-left: 30px;
     margin-right: 10px;
     margin-top: 20px;
@@ -281,16 +276,16 @@ const Photo=styled.div`
     height: 100%;
 `
 
-const ImageContaier=styled.div`
+const ImageContainer=styled.div`
+    background-color: #d9d9d9;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 100px;
-    border: 2px solid gray;
-    border-radius: 20px;
-    margin-right:10px;
-    margin-top: 20px;
+    width: 120px;
+    height: 120px;
+    border: 0;
+    margin-top: 10px;
+    margin-right: 8px;
 `
 const ParentContainer=styled.div`
     display: flex;
@@ -421,8 +416,8 @@ function Modal({ closeModal }){
                         })}
                     </Stars>
                     <span className="h">평점을 남겨주세요</span>
-                </Wrap>   
-                <Explain><span>좋았던 점</span></Explain><span style={{color: "gray"}}>20자 이상</span>
+                </Wrap>
+                <Explain><span>좋았던 점</span></Explain><span style={{color: "gray", display: "inline-block", marginRight: "70%"}}>20자 이상</span> {/* 수정한 부분(밑에도) */}
                 <Boxexplain>
                     <div className="textarea-wrapper">
                     <textarea onChange={onTextareaHandler} maxLength="5000" placeholder="내용을 입력하세요."></textarea>
@@ -432,7 +427,7 @@ function Modal({ closeModal }){
                     </p>
                     </div>
                 </Boxexplain>
-                <Explain><span>아쉬웠던 점</span></Explain><span style={{color: "gray"}}>20자 이상</span>
+                <Explain><span>아쉬웠던 점</span></Explain><span style={{color: "gray", display: "inline-block", marginRight: "68%"}}>20자 이상</span>
                 <Boxexplain>
                     <div className="textarea-wrapper">
                     <textarea onChange={onTextareaHandler} maxLength="5000" placeholder="내용을 입력하세요."></textarea>
@@ -449,16 +444,16 @@ function Modal({ closeModal }){
                             <label htmlFor="image-upload">
                             <IoIosAddCircleOutline 
                             size="40"
-                            color="gray"/></label>
+                            color="#B3B3B3"/></label>
                             <input type="file" id="image-upload" accept="image/*" 
                             onChange={setPreviewImg} style={{ display: "none" }}/> 
                         </button>
                         
                     </Photo></PhotoContainer>
 
-                    <ImageContaier>
+                    <ImageContainer>
                         <img alt="메인사진" src={mainImg} style={{maxWidth:"100px"}}></img>
-                    </ImageContaier>
+                    </ImageContainer>
                 </ParentContainer>
 
                 <button className="review-button">후기 등록하기</button>
@@ -478,6 +473,7 @@ function Info() {
 
     const closeModal = () => {
         setModal(false);
+        document.body.style.overflow = "unset"; //수정한 부분
     };
 
     const handleStarClick = index => {
@@ -543,12 +539,13 @@ function Info() {
                             </Wrap>   
                         </div>
                         
-                        <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", marginBottom:"20px", marginTop:"10px", fontWeight: "bold", fontSize: "12pt"}}>사진 후기
+                        <div style={{textAlign: "left", justifyContent: "flex-start", flexDirection: "column", marginBottom:"20px", marginTop:"10px", fontWeight: "bold", fontSize: "12pt"}}>사진 후기
                         
                             <div className="photoreview" >
-                                <ImageContaier></ImageContaier>
-                                <ImageContaier></ImageContaier>
-                                <ImageContaier></ImageContaier>
+                                <ImageContainer></ImageContainer>
+                                <ImageContainer></ImageContainer>
+                                <ImageContainer></ImageContainer>
+                                <ImageContainer></ImageContainer>
                             </div>
                         </div>
                     </div>
@@ -569,7 +566,7 @@ function Info() {
                 <Write>
 
                     <div className="writeblock">
-                        <span className="writereview" onClick={()=>{setModal(true)}}>
+                        <span className="writereview" onClick={()=>{setModal(true); document.body.style.overflow = "hidden";}}> {/* 수정한 부분 */}
                             <button className="writebutton">후기 작성하기</button>
                         </span>
                         <span className="writerecently">최신순</span>
@@ -618,7 +615,7 @@ function Info() {
                                             <div>{good[i]}</div>
                                             <div style={{fontWeight: "bold", fontSize: "12pt"}}>아쉬웠던 점</div> 
                                             <div>{bad[i]}</div> 
-                                            <ImageContaier><span>{photo[i]}</span></ImageContaier>
+                                            <ImageContainer><span>{photo[i]}</span></ImageContainer>
                                             <div style={{marginTop:'20px', color:'gray', fontSize:'15px'}}>리뷰발행날짜</div>
                                         </div>
                                     </div>

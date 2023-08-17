@@ -39,7 +39,7 @@ const RecipeTemplate = styled.div`
 
 
 function Recipe(){
-    let [recipe, RCP] = useState(['Rectangle 190', '양식', '레시피 이름', '레시피 한 줄 소개']);
+    let [recipe, setRecipe] = useState(['Rectangle 190', '양식', '레시피 이름', '레시피 한 줄 소개']);
     return(
         <>
         <RecipeTemplate>
