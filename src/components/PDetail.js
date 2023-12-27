@@ -1,9 +1,7 @@
 import React, {useRef} from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { Button } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
 import Recipe from './RecipeBox.js';
 import Slider from 'react-slick';
 import Info from './ProductInfo';
@@ -384,7 +382,7 @@ function HeartBttn() { /* 찜버튼 */
 //수정필요: handleCopyClipBoard 현재 페이지 url 넘기기
 function ShareBox() {
     const copyLinkRef = useRef();
-    const handleCopyClipBoard = async (text: string) => {
+    const handleCopyClipBoard = async (text) => {
         try {
             await navigator.clipboard.writeText(text);
             alert("클립보드에 링크가 복사되었어요.");

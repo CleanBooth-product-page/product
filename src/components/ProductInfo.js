@@ -21,7 +21,7 @@ const Stars = styled.div`
     margin: 0px auto;
 
     & svg {
-    color: gray;
+    color: lightgray;
     cursor: pointer;
     }
 
@@ -36,13 +36,14 @@ const ScoreBox = styled.div`
     margin: 0px auto;
 
     .score { //수정한 부분
+        margin: 0px auto;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         margin-bottom: 40px;
         border: 1px solid #CCCCCC;
         border-radius: 13px;
-        width: 100%;
+        width: 830px;
         height: 200px;
     }
     
@@ -88,26 +89,25 @@ const DashedText = styled.div`
 `
 
 const Template = styled.div`
-    display: block;
+    min-width: 850px;
     margin-bottom: 300px;
+    margin: 0 auto;
 
     .good {
-        width: 41%;
-        height: 200px;
+        width: 345px;
+        height: 130px;
         padding: 2rem;
-        float: left;
-        clear: left;
+        margin-right: 10px;
         display: inline-block;
         border: 1px solid #CCCCCC;
         border-radius: 13px;
     }
 
     .bad {
-        width: 41%;
-        height: 200px;
+        width: 345px;
+        height: 130px;
+        margin-left: 10px;
         padding: 2rem;
-        float: right;
-        clear: right;
         display: inline-block;
         border: 1px solid #CCCCCC;
         border-radius: 13px;
@@ -120,13 +120,10 @@ const Template = styled.div`
 `;
 
 const Write=styled.div`
-    border-bottom: 1px solid gray;
-
     .writeblock{
-
         display: block; 
         margin-left: 15%;
-        margin-right: 10%;
+        margin-right: 30px;
         padding-top: 40px;
         text-align: right;
   
@@ -134,14 +131,19 @@ const Write=styled.div`
     .writereview{
         margin-right:4px;
     }
+    .writemyreview{
+        color: #999999;
+    }
     .writerecently{
-        border-right:2px solid gray;
+        color: #999999;
+        border-right:1px solid #999999;
         padding-right:11px;
         margin-right:11px;
         margin-left:8px;
     }
     .writelong{
-        border-right:2px solid gray;
+        color: #999999;
+        border-right:1px solid #999999;
         padding-right:11px;
         margin-right:11px;
     }
@@ -152,9 +154,9 @@ const Write=styled.div`
         height: 35px;
         font-size: 15px;
         color: white;
-        background: green;
-        border-radius:13px;
-        border: 2px solid green;
+        background: #009F50;
+        border-radius:10px;
+        border: 0;
     }
     
 `;
@@ -276,7 +278,7 @@ const Photo=styled.div`
 
 const ImageContainer=styled.div`
     background-color: #d9d9d9;
-    display: flex;
+    display: inline-block;
     align-items: center;
     justify-content: center;
     width: 120px;
@@ -284,6 +286,7 @@ const ImageContainer=styled.div`
     border: 0;
     margin-top: 10px;
     margin-right: 8px;
+    border-radius: 5px;
 `
 const ImageContain=styled.div`
     background-color: transparent;
@@ -301,15 +304,14 @@ const ParentContainer=styled.div`
 `
 const ListMap=styled.div`
     display: flex;
-    margin-left: 10%;
-    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
     .textlist{
-        margin-right: 160px;
+        margin-left: 100px;
+        margin-right: 60px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
-
     .listmapfirst{ 
         display: flex;
         flex-direction: column;
@@ -328,7 +330,6 @@ const ListMap=styled.div`
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        
     }
 
 `
@@ -481,7 +482,7 @@ function Modal({ closeModal }){
                     </Photo></PhotoContainer>
 
                     <ImageContain>
-                        <img alt="메인사진" src={mainImg} style={{maxWidth:"100px"}}></img>
+                        <img src={mainImg} style={{maxWidth:"100px"}}></img>
                     </ImageContain>
                 </ParentContainer>
 
@@ -535,13 +536,14 @@ function Info() {
     let [modal,setModal]=useState(false); //UI의 현재 상태 저장 //state에 따라 UI가 어떻게 보일지 작성
     
     //리뷰관련변수
-    let [name,setName]=useState(['김나현', '박지우']);
-    let [age,setAge]=useState(['20', '30']);
-    let [star,setStar]=useState([3, 2]);
+    let [product, setProduct]=useState(['상품명1', '상품명2'])
+    let [name,setName]=useState(['김XX', '박XX']);
+    let [age,setAge]=useState(['25', '31']);
+    let [star,setStar]=useState(['1', '2']);
     //score가 저장되어야함
-    let [good,setGood]=useState(['좋았던 점 내용']);
-    let [bad,setBad]=useState(['아쉬웠던 점 내용']);
-    let [photo,setPhoto]=useState(['메인사진']);
+    let [good,setGood]=useState(['내용1', '내용2']);
+    let [bad,setBad]=useState(['내용3', '내용4']);
+    let [photo,setPhoto]=useState(['사진1','사진2']);
     //
 
     return (
@@ -619,23 +621,20 @@ function Info() {
                                         <div>{name[i]}님의 후기</div>
                                         <div>{age[i]}대</div>
                                     </div>
-
-                                    <span>{star[i]}</span>
+                                    <div>{product[i]}</div>
 
                                     <div className="listmapfirst">
 
                                         <div className="stars-container">
                                             <Stars>
-                                                {ARRAY.map((el, idx) => {
-                                                    return (
-                                                        <FaStar
-                                                        key={idx}
-                                                        size="40"
-                                                        onClick={() => handleStarClick(el)}
-                                                        className={clicked[el] && 'yellowStar'}
-                                                        />
-                                                    );
-                                                })}
+                                            {star.map((el, idx) => (
+                                                <FaStar
+                                                key={idx}
+                                                size="40"
+                                                onClick={() => handleStarClick(el)}
+                                                className={clicked[el] ? 'yellowStar' : ''}
+                                                />
+                                            ))}
                                             </Stars>
                                         </div>
 
